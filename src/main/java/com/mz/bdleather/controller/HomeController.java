@@ -51,7 +51,7 @@ public class HomeController {
 	{
 		List<Product> products=prodRepo.findAll();//declaring list of product to store prodRepo curd operation.
 		model.addAttribute("productsList", products);// adding the object to model using key value pair.
-		return"display-product";
+		return"display-product"; //this is for displaying products
 	}
 	
 	

@@ -5,11 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mz.bdleather.dao.CustomerRepository;
 import com.mz.bdleather.entities.Customer;
 
 @Controller
+@RequestMapping("")
 public class CustomersController {
 	@Autowired
 	CustomerRepository custRepo; //this is creating instance of 

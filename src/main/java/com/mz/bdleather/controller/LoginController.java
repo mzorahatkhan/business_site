@@ -3,10 +3,12 @@ package com.mz.bdleather.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/customer")
 public class LoginController {
-    @GetMapping("/customer_loginForm")
+    @GetMapping("/loginForm")
 	public String displayLoginForm()
 	{
 		return"customer-login";
@@ -14,6 +16,6 @@ public class LoginController {
     @PostMapping("/customer_login")
     public String submittLoginData()
     {
-    	return"index";
+    	return"redirect:";
     }
 }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Create New Product</title>
+
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+			background-color:LimeGreen;
+		}
+
+		h1 {
+			color: #333;
+		}
+
+		form {
+			margin-top: 20px;
+		}
+
+		label {
+			display: block;
+			margin-top: 10px;
+			color: #666;
+			font-weight: bold;
+		}
+
+		input[type="text"],
+		textarea {
+			width: 50%;
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			resize: vertical;
+		}
+
+		button[type="submit"] {
+			margin-top: 20px;
+			padding: 10px 20px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #0056b3;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Create New Product</h1>
+
+	<form th:action="@{/products/create}" th:object="${products}" method="post">
+		<div>
+			<label for="prodName">Product Name:</label>
+			<input type="text" id="prodName" name="prodName" th:value="${products.prodName}">
+		</div>
+
+		<div>
+			<label for="prodPrice">Product Price:</label>
+			<input type="text" id="prodPrice" name="prodPrice" th:value="${products.prodPrice}">
+		</div>
+
+		<div>
+			<label for="prodDescription">Product Description:</label>
+			<textarea id="prodDescription" name="prodDescription" th:text="${products.prodDescription}"></textarea>
+		</div>
+		<div>
+			<label for="prodColor">Product Color:</label>
+			<select id="prodColor" name="prodColor" th:field="${products.prodColor}">
+				<option value="Black">Black</option>
+				<option value="Brown">Brown</option>
+				<option value="Blue">Blue</option>
+			</select>
+		</div>
+
+		<button type="submit">Create</button>
+	</form>
+</body>
+
+</html>

@@ -1,15 +1,23 @@
 package com.mz.bdleather.controller;
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mz.bdleather.dao.ProductRepository;
 import com.mz.bdleather.entities.Customer;
+import com.mz.bdleather.entities.Product;
 
 @Controller
 @RequestMapping("")
 public class HomeController {
+	@Autowired
+	ProductRepository prodRepo;//bringing prodrepo to run crud operation prom h2 database
+	
 	//this endpoint will show the home page
 	@GetMapping("")
 	public String displayHome()
@@ -23,20 +31,28 @@ public class HomeController {
 	{
 		return"redirect:/user_register";
 	}
-    //after clciking login in homepage ,its redirct to /loginForm in loginController
+    //after clicking login in home-page ,its re-direct to /loginForm in loginController
 	@GetMapping("/login")
 	public String showLoginPage()
 	{
 		return"redirect:/customer/loginForm";
 	}
 	
-	//this is the post mapping where after clicking login ,its redircted to this method 
+	//this is the post mapping where after clicking login ,its redirected to this method 
 	@PostMapping("/customer_login")
 	public String returnToHomePage()
 	{
 		return"redirect:/";
 	}
 	
+	//this endpoint will show the product details in database
+	@GetMapping("/displayProducts")
+	public String displayProducts(Model model)
+	{
+		List<Product> products=prodRepo.findAll();//declaring list of product to store prodRepo curd operation.
+		model.addAttribute("productsList", products);// adding the object to model using key value pair.
+		return"display-product";
+	}
 	
 	
 }

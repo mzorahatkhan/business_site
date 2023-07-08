@@ -6,18 +6,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class ProdInventory {
+public class Supplier {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long supplierId;
 	
 	private String supplierName;
 	private String supplierCountry;
-	public ProdInventory()
+	public Supplier()
 	{
 		
 	}
-	public ProdInventory(String supplierName, String supplierCountry) {
+	public Supplier(String supplierName, String supplierCountry) {
 		super();
 		this.supplierName = supplierName;
 		this.supplierCountry = supplierCountry;

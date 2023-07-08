@@ -54,7 +54,7 @@
     </header>
     <h1>Supplier Form</h1>
     
-    <form th:action="@{/products/suppliers}" method="post" th:object="${prodInventory}">
+    <form th:action="@{/products/suppliers}" method="post" th:object="${supplier}">
         <label for="supplierName">Supplier Name:</label>
         <input type="text" id="supplierName" name="supplierName" th:value="${supplierName}" th:field="*{supplierName}">
         

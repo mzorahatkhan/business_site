@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mz.bdleather.dao.ProdInventoryRepository;
+import com.mz.bdleather.dao.SupplyRepository;
 import com.mz.bdleather.dao.ProductRepository;
-import com.mz.bdleather.entities.ProdInventory;
+import com.mz.bdleather.entities.Supplier;
 import com.mz.bdleather.entities.Product;
 
 @Controller
@@ -19,7 +19,7 @@ public class ProductController {
 	@Autowired
 	ProductRepository prodRepo;
 	@Autowired
-	ProdInventoryRepository prodInvRepo;
+	SupplyRepository supplyRepo;
 	
 	@GetMapping("/new")
 	public String displayProductForm(Model model) 
@@ -36,18 +36,18 @@ public class ProductController {
 	}
     
 	//this is the endpoint for inserting supplier information and binding the form
-	@GetMapping("/prod_inventory")
-	public String displayProductInventoryForm(Model model)
+	@GetMapping("/supply_info")
+	public String displaySupplyInfoForm(Model model)
 	{
-		ProdInventory prodInventory=new ProdInventory();
-		model.addAttribute("prodInventory", prodInventory);
-		return"product/prod-inventory";
+		Supplier supplier=new Supplier();
+		model.addAttribute("supplier", supplier);
+		return"product/supply-info";
 	}
 	//this to save the binding form field to the database using ProdInventoryRepo
 	@PostMapping("/suppliers")
-	public String submitProducInventoryForm(Model model,ProdInventory prodInventory)
+	public String submitProducInventoryForm(Model model,Supplier supplier)
 	{
-		prodInvRepo.save(prodInventory);
-		return"redirect:/products/prod_inventory";
+		supplyRepo.save(supplier);
+		return"redirect:/products/supply_info";
 	}
 }

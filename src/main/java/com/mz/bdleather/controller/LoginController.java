@@ -11,11 +11,11 @@ public class LoginController {
     @GetMapping("/loginForm")
 	public String displayLoginForm()
 	{
-		return"customer-login";
+		return"customer/customer-login";
 	}
     @PostMapping("/customer_login")
     public String submittLoginData()
     {
-    	return"redirect:";
+    	return"redirect:"; //redirecting to home page via homecontroller endpoint "" .
     }
 }

@@ -22,7 +22,7 @@ public class CustomersController {
 		Customer aCustomer=new Customer();
 		//this is adding attribute to model 
 		model.addAttribute("customer",aCustomer);
-		return "registration";
+		return "customer/registration";
 	}
 	@PostMapping("/register")
 	public String completeRegistration(Customer customer, Model model)

@@ -25,7 +25,7 @@ public class HomeController {
 	@GetMapping("")
 	public String displayHome()
 	{
-		return"index";
+		return"main/index";
 	}
 	
 	//here clicking register in home page is redirected to Customer controller /user_register endpoints.
@@ -54,7 +54,7 @@ public class HomeController {
 	{
 		List<Product> products=prodRepo.findAll();//declaring list of product to store prodRepo curd operation.
 		model.addAttribute("productsList", products);// adding the object to model using key value pair.
-		return"display-product"; //this is for displaying products
+		return"main/display-product"; //this is for displaying products
 	}
 	
 	//this endpoint will show the all the customer details are present in database
@@ -63,7 +63,7 @@ public class HomeController {
 	{
 		List<Customer> customers=custRepo.findAll();
 		model.addAttribute("customerList", customers);
-		return "display-customer";
+		return "main/display-customer";
 	}
 	
 }

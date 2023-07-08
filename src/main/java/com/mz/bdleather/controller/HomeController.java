@@ -48,6 +48,12 @@ public class HomeController {
 		return"redirect:/";
 	}
 	
+	@GetMapping("/insert_product")
+	public String insertProduct()
+	{
+		return"redirect:/products/new";
+	}
+	
 	//this endpoint will show the product details in database
 	@GetMapping("/displayProducts")
 	public String displayProducts(Model model)

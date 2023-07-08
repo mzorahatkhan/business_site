@@ -27,6 +27,12 @@ public class HomeController {
 	{
 		return"main/index";
 	}
+	//this endpoint will show the home page with /home endpoint
+		@GetMapping("/home")
+		public String displayHomeWithEndpoin()
+		{
+			return"main/index";
+		}
 	
 	//here clicking register in home page is redirected to Customer controller /user_register endpoints.
 	@GetMapping("/register")

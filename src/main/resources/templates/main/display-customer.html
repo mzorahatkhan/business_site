@@ -2,8 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Customer Details</title>
+    <style th:replace="layouts :: navstyle"></style>
 </head>
 <body>
+	
+	<header>
+        <!-- Your header content here -->
+       <nav th:replace="layouts :: navbar"></nav>
+    </header>
+    
     <h4>Customer Details</h4>
     
     <table>

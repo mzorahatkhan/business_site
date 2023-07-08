@@ -4,7 +4,7 @@
 <head>
 	<title>Create New Product</title>
 
-	<style>
+	<style th:replace="layouts :: navstyle">
 		body {
 			font-family: Arial, sans-serif;
 			margin: 20px;
@@ -52,6 +52,11 @@
 </head>
 
 <body>
+	
+	<header>
+        <!-- Your header content here -->
+       <nav th:replace="layouts :: navbar"></nav>
+    </header>
 	<h1>Create New Product</h1>
 
 	<form th:action="@{/products/create}" th:object="${products}" method="post">

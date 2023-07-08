@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Leather Products - Registration</title>
-    <style>
+    <style th:replace="layouts :: navstyle">
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -48,6 +48,10 @@
     </style>
 </head>
 <body>
+	<header>
+        <!-- Your header content here -->
+       <nav th:replace="layouts :: navbar"></nav>
+    </header>
     <h1>Customer Registration</h1>
     
     <form th:action="@{/register}" method="post" th:object="${customer}">

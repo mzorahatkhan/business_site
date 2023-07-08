@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Leather Products - Home</title>
+    <style th:fragment="navstyle">
+        /* CSS styles for the header, main, and footer sections */
+
+        /* ... existing styles ... */
+
+        /* Navigation bar styles */
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+<nav th:fragment="navbar">
+	<a th:href="@{/register}">Register</a>
+	<a th:href="@{/login}">Login</a>
+	<a th:href="@{/products}">Browse Products</a>
+</nav>
+
+</html>

@@ -22,7 +22,7 @@ public class ProductController {
 	{
 		Product aProduct=new Product();
 		model.addAttribute("products",aProduct);
-		return"new-products";
+		return"product/new-products";
 	}
 	@PostMapping("/create")
 	public String createNewProduct(Product product, Model model)

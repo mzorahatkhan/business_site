@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Leather Products - Home</title>
+    <style>
+        /* CSS styles for the header, main, and footer sections */
+
+        /* ... existing styles ... */
+
+        /* Navigation bar styles */
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- Your header content here -->
+       <nav th:replace="layouts :: navbar"></nav>
+    </header>
+
+    <main>
+        <section>
+            <h1 style="font-size: 36px; color: #007bff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Welcome to
+                <span style="color: #007bff;">BD Leather</span> Products!</h1>
+            <p style="font-size: 18px; color: #F08080;">Discover the finest collection of leather products.</p>
+        </section>
+
+        <!-- Rest of the content -->
+
+    </main>
+
+    <footer>
+        <!-- Your footer content here -->
+    </footer>
+</body>
+
+</html>

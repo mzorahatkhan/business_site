@@ -3,7 +3,7 @@
 
 <head>
 	<title>Login</title>
-	<style>
+	<style th:replace="layouts :: navstyle">
 		body {
 			font-family: Arial, sans-serif;
 			margin: 20px;
@@ -49,6 +49,11 @@
 </head>
 
 <body>
+	<header>
+        <!-- Your header content here -->
+       <nav th:replace="layouts :: navbar"></nav>
+    </header>
+    
 	<h1>Login</h1>
 
 	<form th:action="@{/customer_login}" method="post">

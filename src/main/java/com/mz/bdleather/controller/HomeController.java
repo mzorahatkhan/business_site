@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mz.bdleather.dao.CustomerRepository;
 import com.mz.bdleather.dao.ProductRepository;
+import com.mz.bdleather.dao.SupplyRepository;
 import com.mz.bdleather.entities.Customer;
 import com.mz.bdleather.entities.Product;
+import com.mz.bdleather.entities.Supplier;
 
 @Controller
 @RequestMapping("")
@@ -20,6 +22,9 @@ public class HomeController {
 	ProductRepository prodRepo;//bringing prodrepo to run crud operation prom h2 database
 	@Autowired
 	CustomerRepository custRepo; //autowiring customer repository instance for curd operation.
+	
+	@Autowired
+	SupplyRepository supplyRepo;
 	
 	//this endpoint will show the home page
 	@GetMapping("")
@@ -78,4 +83,11 @@ public class HomeController {
 		return "main/display-customer";
 	}
 	
+	@GetMapping("/displaySupplier")
+	public String displaySupplierInfo(Model model)
+	{
+		List<Supplier>supplier=supplyRepo.findAll();
+		model.addAttribute("supplierList", supplier);
+		return"main/display-supply";
+	}
 }

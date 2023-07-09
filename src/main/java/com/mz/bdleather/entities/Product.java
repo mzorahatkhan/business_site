@@ -1,9 +1,12 @@
 package com.mz.bdleather.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Product {
@@ -14,6 +17,8 @@ public class Product {
 	private double prodPrice;
 	private String prodDescription;
 	private String prodColor;
+	@OneToMany(mappedBy="theProduct")
+	private List<Supplier> supplier;
 	
 	public Product() {
 		
@@ -26,6 +31,13 @@ public class Product {
 		this.prodDescription = prodDescription;
 	}
 	
+	
+	public List<Supplier> getSupplier() {
+		return supplier;
+	}
+	public void setSupplier(List<Supplier> supplier) {
+		this.supplier = supplier;
+	}
 	public long getProductId() {
 		return productId;
 	}

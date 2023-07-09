@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mz.bdleather.dao.CustomerRepository;
 import com.mz.bdleather.dao.ProductRepository;
+import com.mz.bdleather.dao.SupplyRepository;
 import com.mz.bdleather.entities.Customer;
 import com.mz.bdleather.entities.Product;
+import com.mz.bdleather.entities.Supplier;
 
 @Controller
 @RequestMapping("")
@@ -21,12 +23,21 @@ public class HomeController {
 	@Autowired
 	CustomerRepository custRepo; //autowiring customer repository instance for curd operation.
 	
+	@Autowired
+	SupplyRepository supplyRepo;
+	
 	//this endpoint will show the home page
 	@GetMapping("")
 	public String displayHome()
 	{
 		return"main/index";
 	}
+	//this endpoint will show the home page with /home endpoint
+		@GetMapping("/home")
+		public String displayHomeWithEndpoin()
+		{
+			return"main/index";
+		}
 	
 	//here clicking register in home page is redirected to Customer controller /user_register endpoints.
 	@GetMapping("/register")
@@ -48,6 +59,12 @@ public class HomeController {
 		return"redirect:/";
 	}
 	
+	@GetMapping("/insert_product")
+	public String insertProduct()
+	{
+		return"redirect:/products/new";
+	}
+	
 	//this endpoint will show the product details in database
 	@GetMapping("/displayProducts")
 	public String displayProducts(Model model)
@@ -66,4 +83,11 @@ public class HomeController {
 		return "main/display-customer";
 	}
 	
+	@GetMapping("/displaySupplier")
+	public String displaySupplierInfo(Model model)
+	{
+		List<Supplier>supplier=supplyRepo.findAll();
+		model.addAttribute("supplierList", supplier);
+		return"main/display-supply";
+	}
 }

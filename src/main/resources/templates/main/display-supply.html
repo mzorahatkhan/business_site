@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Customer Details</title>
+    <title>Supply Details</title>
     <style th:replace="layouts :: navstyle"></style>
     <style>
         body {
@@ -46,18 +46,18 @@
         <nav th:replace="layouts :: navbar"></nav>
     </header>
     
-    <h4>Customer Details</h4>
+    <h4>Supply details</h4>
     
     <table>
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
+            <th>SupplierId</th>
+            <th>Supplier Name</th>
+            <th>Supplier Country</th>
         </tr>
-        <tr th:each="customer : ${customerList}">
-            <td th:text="${customer.firstName}"></td>
-            <td th:text="${customer.lastName}"></td>
-            <td th:text="${customer.email}"></td>
+        <tr th:each="supplier : ${supplierList}">
+            <td th:text="${supplier.supplierId}"></td>
+            <td th:text="${supplier.supplierName}"></td>
+            <td th:text="${supplier.supplierCountry}"></td>
         </tr>
     </table>
     

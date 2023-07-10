@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mz.bdleather.dao.SupplyRepository;
 import com.mz.bdleather.dao.ProductRepository;
-import com.mz.bdleather.entities.Supplier;
+import com.mz.bdleather.dao.SupplyRepository;
 import com.mz.bdleather.entities.Product;
+import com.mz.bdleather.entities.Supplier;
 
 @Controller
 @RequestMapping("/products")
@@ -27,15 +27,21 @@ public class ProductController {
 	public String displayProductForm(Model model) 
 	{
 		Product aProduct=new Product();
-		List<Supplier>supplier=supplyRepo.findAll();
+		List<Supplier>suppliers=supplyRepo.findAll();
 		model.addAttribute("products",aProduct);
-		model.addAttribute("supplierList", supplier);
+		model.addAttribute("supplierList", suppliers);
 		return"product/new-products";
 	}
 	@PostMapping("/create")
-	public String createNewProduct(Product product, Model model)
+	public String createNewProduct(Product product, Model model )
 	{
 		prodRepo.save(product);
+//		Iterable<Supplier>chosenSupplier=supplyRepo.findAllById(suppliers);//updating supply entitys by
+//		for(Supplier supp:chosenSupplier)
+//		{
+//			supp.setTheProduct(product);
+//			supplyRepo.save(supp);
+//		}
 		return"redirect:/products/new";
 	}
     

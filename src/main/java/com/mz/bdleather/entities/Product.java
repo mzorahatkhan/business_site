@@ -2,11 +2,17 @@ package com.mz.bdleather.entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+
+
 
 @Entity
 public class Product {
@@ -17,8 +23,13 @@ public class Product {
 	private double prodPrice;
 	private String prodDescription;
 	private String prodColor;
-	@OneToMany(mappedBy="theProduct")
-	private List<Supplier> supplier;
+	
+	@ManyToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST},
+			fetch=FetchType.LAZY)
+	@JoinTable(name="product_supplier",
+	           joinColumns=@JoinColumn(name="product_id"),
+	           inverseJoinColumns=@JoinColumn(name="supplier_id"))
+	private List<Supplier> suppliers;
 	
 	public Product() {
 		
@@ -32,11 +43,11 @@ public class Product {
 	}
 	
 	
-	public List<Supplier> getSupplier() {
-		return supplier;
+	public List<Supplier> getSuppliers() {
+		return suppliers;
 	}
-	public void setSupplier(List<Supplier> supplier) {
-		this.supplier = supplier;
+	public void setSuppliers(List<Supplier> suppliers) {
+		this.suppliers = suppliers;
 	}
 	public long getProductId() {
 		return productId;

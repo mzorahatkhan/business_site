@@ -99,8 +99,11 @@
 
         <div>
             <label for="suppliers">Select Supplier:</label>
-            <select id="suppliers" name="suppliers" multiple="multiple" required>
-                <option th:each="supplier : ${supplierList}" th:value="${supplier.supplierId}" th:text="${supplier.supplierName}"></option>
+            <select id="suppliers" name="suppliers" multiple="multiple" th:field="${products.suppliers}">
+                <option th:each="supplier : ${supplierList}" 
+                th:value="${supplier.supplierId}" 
+                th:text="${supplier.supplierName}">
+                </option>
             </select>
         </div>
 

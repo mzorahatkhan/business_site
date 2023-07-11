@@ -3,10 +3,14 @@
 
 <head>
 	<title>Login</title>
-	<style th:replace="layouts :: navstyle">
+	<!--this is styling for navbar which comes from layouts file -->
+	<style th:replace="layouts :: navstyle"></style>
+	<!--this is styling for registration form body -->
+	<style >
 		body {
 			font-family: Arial, sans-serif;
 			margin: 20px;
+			background-color:lightblue;
 		}
 
 		h1 {
@@ -26,7 +30,7 @@
 
 		input[type="text"],
 		input[type="password"] {
-			width: 100%;
+			width: 50%;
 			padding: 5px;
 			border: 1px solid #ccc;
 			border-radius: 4px;

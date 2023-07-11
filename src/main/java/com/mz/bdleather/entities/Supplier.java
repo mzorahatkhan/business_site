@@ -31,7 +31,7 @@ public class Supplier {
 	public List<Product> getPrducts() {
 		return prducts;
 	}
-	public void setPrducts(List<Product> prducts) {
+	public void setProducts(List<Product> prducts) {
 		this.prducts = prducts;
 	}
 	public Supplier()

@@ -32,7 +32,7 @@
         }
         
         th {
-            background-color: #f2f2f2;
+            background-color: lightcoral;
             font-weight: bold;
         }
         
@@ -54,7 +54,8 @@
     </header>
     <h1>Product Details</h1>
     
-    <table>
+    <div>
+		<table>
         <thead>
             <tr>
                 <th>Product Name</th>
@@ -72,6 +73,27 @@
             </tr>
         </tbody>
     </table>
+	</div>
+	<h1>Product and Supplier Details</h1>
+	<div>
+		<table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Supplier Name</th>
+                <th>Supplier Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="productSupply : ${prodSupplyInfo}">
+                <td th:text="${productSupply.productName}"></td>
+                <td th:text="${productSupply.supplierName}"></td>
+                <td th:text="${productSupply.supplierCountry}"></td>
+                
+            </tr>
+        </tbody>
+    </table>
+	</div>
     <div class="col-md-4">
 		<canvas id="myPieChart" ></canvas>
 		

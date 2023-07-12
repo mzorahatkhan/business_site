@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mz.bdleather.dao.CustomerRepository;
 import com.mz.bdleather.dao.ProductRepository;
 import com.mz.bdleather.dao.SupplyRepository;
+import com.mz.bdleather.dto.ProductSupplierInfo;
 import com.mz.bdleather.entities.Customer;
 import com.mz.bdleather.entities.Product;
 import com.mz.bdleather.entities.Supplier;
@@ -71,6 +72,8 @@ public class HomeController {
 	{
 		List<Product> products=prodRepo.findAll();//declaring list of product to store prodRepo curd operation.
 		model.addAttribute("productsList", products);// adding the object to model using key value pair.
+		List<ProductSupplierInfo>prodSupplierInfo=prodRepo.showProductWithSupplier();
+		model.addAttribute("prodSupplyInfo", prodSupplierInfo);
 		return"main/display-product"; //this is for displaying products
 	}
 	

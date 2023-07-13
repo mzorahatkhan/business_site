@@ -1,7 +1,9 @@
 package com.mz.bdleather.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,10 @@ public class HomeController {
 	@Autowired
 	SupplyRepository supplyRepo;
 	
+	@Value("${version}")
+	public String ver;
+	
+	
 	//this endpoint will show the home page
 	@GetMapping("")
 	public String displayHome()
@@ -38,8 +44,9 @@ public class HomeController {
 	}
 	//this endpoint will show the home page with /home endpoint
 		@GetMapping("/home")
-		public String displayHomeWithEndpoin()
+		public String displayHomeWithEndpoin(Model model)
 		{
+			model.addAttribute("versionNumber", ver);
 			return"main/index";
 		}
 	

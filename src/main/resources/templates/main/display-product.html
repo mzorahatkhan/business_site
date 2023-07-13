@@ -1,106 +1,115 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Product Details</title>
-    <style th:replace="layouts :: navstyle"></style>
-     
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        #myPieChart {
-            width: 400px;
-            height: 400px;
-        }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ccc;
-        }
-        
-        th {
-            background-color: lightcoral;
-            font-weight: bold;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        tr:hover {
-            background-color: #e9e9e9;
-        }
-    </style>
-   
-    
+	<title>Product Details</title>
+	<style th:replace="layouts :: navstyle"></style>
+
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+		}
+
+		#myPieChart {
+			width: 400px;
+			height: 400px;
+		}
+
+		h1 {
+			color: #333;
+			margin-bottom: 20px;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+
+		th,
+		td {
+			padding: 10px;
+			text-align: left;
+			border-bottom: 1px solid #ccc;
+		}
+
+		th {
+			background-color: lightcoral;
+			font-weight: bold;
+		}
+
+		tr:nth-child(even) {
+			background-color: #f9f9f9;
+		}
+
+		tr:hover {
+			background-color: #e9e9e9;
+		}
+	</style>
+
+
 </head>
+
 <body>
-    <header>
-        <!-- Your header content here -->
-        <nav th:replace="layouts :: navbar"></nav>
-    </header>
-    <h1>Product Details</h1>
-    
-    <div>
+	<header>
+		<!-- Your header content here -->
+		<nav th:replace="layouts :: navbar"></nav>
+	</header>
+	<h1>Product Details</h1>
+
+	<div>
 		<table>
-        <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Product Price</th>
-                <th>Product Description</th>
-                <th>Product Color</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="product : ${productsList}">
-                <td th:text="${product.prodName}"></td>
-                <td th:text="${product.prodPrice}"></td>
-                <td th:text="${product.prodDescription}"></td>
-                <td th:text="${product.prodColor}"></td>
-            </tr>
-        </tbody>
-    </table>
+			<thead>
+				<tr>
+					<th>Product Name</th>
+					<th>Product Price</th>
+					<th>Product Description</th>
+					<th>Product Color</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product : ${productsList}">
+					<td th:text="${product.prodName}"></td>
+					<td th:text="${product.prodPrice}"></td>
+					<td th:text="${product.prodDescription}"></td>
+					<td th:text="${product.prodColor}"></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<h1>Product and Supplier Details</h1>
 	<div>
 		<table>
-        <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Supplier Name</th>
-                <th>Supplier Country</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="productSupply : ${prodSupplyInfo}">
-                <td th:text="${productSupply.productName}"></td>
-                <td th:text="${productSupply.supplierName}"></td>
-                <td th:text="${productSupply.supplierCountry}"></td>
-                
-            </tr>
-        </tbody>
-    </table>
+			<thead>
+				<tr>
+					<th>Product Name</th>
+					<th>Supplier Name</th>
+					<th>Supplier Country</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="productSupply : ${prodSupplyInfo}">
+					<td th:text="${productSupply.productName}"></td>
+					<td th:text="${productSupply.supplierName}"></td>
+					<td th:text="${productSupply.supplierCountry}"></td>
+
+				</tr>
+			</tbody>
+		</table>
 	</div>
-    <div class="col-md-4">
-		<canvas id="myPieChart" ></canvas>
-		
+	<div class="col-md-4">
+		<canvas id="myPieChart"></canvas>
+
+		<script>
+			var productChartData = "[[${dataForChart}]]"
+		</script>
+
 	</div>
-	 <!-- bringing the js library to interpret the js code down there-->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<!-- bringing the js library to interpret the js code down there -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script type="text/javascript" th:src="@{js/myChart.js}"></script>
-	
+
 </body>
+
 </html>

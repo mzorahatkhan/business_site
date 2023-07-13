@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mz.bdleather.dao.CustomerRepository;
 import com.mz.bdleather.dao.ProductRepository;
 import com.mz.bdleather.dao.SupplyRepository;
+import com.mz.bdleather.dto.PieChartProduct;
 import com.mz.bdleather.dto.ProductSupplierInfo;
 import com.mz.bdleather.entities.Customer;
 import com.mz.bdleather.entities.Product;
@@ -68,12 +71,24 @@ public class HomeController {
 	
 	//this endpoint will show the product details in database
 	@GetMapping("/displayProducts")
-	public String displayProducts(Model model)
+	public String displayProducts(Model model) throws JsonProcessingException
 	{
 		List<Product> products=prodRepo.findAll();//declaring list of product to store prodRepo curd operation.
 		model.addAttribute("productsList", products);// adding the object to model using key value pair.
+		//using prodRepo to store the value comes from a custom query which type is a  list of dto this case ProductSupplierInfo
 		List<ProductSupplierInfo>prodSupplierInfo=prodRepo.showProductWithSupplier();
+		//adding list objec comes from custom query to the model
 		model.addAttribute("prodSupplyInfo", prodSupplierInfo);
+		
+		//using prodrepo to store the values comes from a customr query and which type is List of PieChartProduct
+		List<PieChartProduct>pieChartProductData=prodRepo.showProductNumberWithDifferentColor();
+		
+		//need to transform this list to a json object we need ObjectMapper
+		ObjectMapper objectMapper= new ObjectMapper();
+		//using objectMapper we can transfor our list data to json.
+		String jsonStringProduct=objectMapper.writeValueAsString(pieChartProductData);
+		//now our json data is ready and we need add this to our model
+		model.addAttribute("dataForChart", jsonStringProduct);
 		return"main/display-product"; //this is for displaying products
 	}
 	

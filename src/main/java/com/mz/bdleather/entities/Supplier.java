@@ -15,7 +15,7 @@ import jakarta.persistence.ManyToMany;
 @Entity
 public class Supplier {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long supplierId;
 	
 	private String supplierName;

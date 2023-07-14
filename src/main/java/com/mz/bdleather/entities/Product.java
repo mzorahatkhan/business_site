@@ -17,7 +17,7 @@ import jakarta.persistence.JoinColumn;
 @Entity
 public class Product {
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long productId;
 	private String prodName;
 	private double prodPrice;

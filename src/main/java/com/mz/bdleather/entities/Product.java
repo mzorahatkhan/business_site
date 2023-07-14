@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.JoinColumn;
 
 
@@ -17,7 +18,8 @@ import jakarta.persistence.JoinColumn;
 @Entity
 public class Product {
 	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="product_seq")
+	@SequenceGenerator(name = "product_seq", sequenceName = "product_seq", initialValue = 1000,allocationSize = 1)
 	private long productId;
 	private String prodName;
 	private double prodPrice;

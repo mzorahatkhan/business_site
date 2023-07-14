@@ -11,11 +11,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Supplier {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="supplier_seq")
+	@SequenceGenerator(name = "supplier_seq", sequenceName = "supplier_seq", initialValue = 500,allocationSize = 1)
 	private long supplierId;
 	
 	private String supplierName;

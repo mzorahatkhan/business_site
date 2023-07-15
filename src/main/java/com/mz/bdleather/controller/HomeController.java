@@ -32,7 +32,7 @@ public class HomeController {
 	@Autowired
 	SupplyRepository supplyRepo;
 	
-	@Value("${version}")
+	@Value("${myVersion}")
 	public String ver;
 	
 	

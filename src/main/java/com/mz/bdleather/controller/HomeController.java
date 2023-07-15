@@ -75,6 +75,11 @@ public class HomeController {
 	{
 		return"redirect:/products/new";
 	}
+	@GetMapping("/browse_products")
+	public String browseProduct()
+	{
+		return"main/index";
+	}
 	
 	//this endpoint will show the product details in database
 	@GetMapping("/displayProducts")

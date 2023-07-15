@@ -23,7 +23,8 @@ public class HomeControllerTest {
 	public void ifHomepageReturnedVersionNumber()
 	{
 		String renderHtml=this.restTemplate.getForObject("http://localhost:"+port+"/home", String.class);
-		assertEquals(renderHtml.contains("0.0.2"),true);
+		
+		assertEquals(renderHtml.contains("0.0.5"),true);
 	}
 
 }

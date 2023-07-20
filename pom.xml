@@ -85,6 +85,8 @@
 			</plugin>
 
 		</plugins>
+		<finalName> mz-bdleather</finalName>
+		
 	</build>
 
 </project>

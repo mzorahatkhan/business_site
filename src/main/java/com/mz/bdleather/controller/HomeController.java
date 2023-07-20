@@ -36,10 +36,12 @@ public class HomeController {
 	public String ver;
 	
 	
+	
 	//this endpoint will show the home page
 	@GetMapping("")
 	public String displayHome()
 	{
+		
 		return"main/index";
 	}
 	//this endpoint will show the home page with /home endpoint

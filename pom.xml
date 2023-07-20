@@ -65,6 +65,8 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -86,7 +88,7 @@
 
 		</plugins>
 		<finalName> mz-bdleather</finalName>
-		
+
 	</build>
 
 </project>

@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mz.bdleather.dao.CustomerRepository;
 import com.mz.bdleather.entities.Customer;
+import com.mz.bdleather.services.CustomerService;
 
 @Controller
 @RequestMapping("")
 public class CustomersController {
 	@Autowired
-	CustomerRepository custRepo; //this is creating instance of 
+	CustomerService custService; //this is creating instance of customer service which is dependent on customer repo
 	
 	@GetMapping("/user_register")
 	public String userRegistration(Model model) 
@@ -28,7 +28,7 @@ public class CustomersController {
 	public String completeRegistration(Customer customer, Model model)
 	{
 		//this is adding object to repo
-		custRepo.save(customer);
+		custService.save(customer);
 		return"redirect:/user_register";
 	}
 

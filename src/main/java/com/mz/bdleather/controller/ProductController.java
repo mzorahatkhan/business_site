@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mz.bdleather.dao.ProductRepository;
-import com.mz.bdleather.dao.SupplyRepository;
 import com.mz.bdleather.entities.Product;
 import com.mz.bdleather.entities.Supplier;
+import com.mz.bdleather.services.ProductService;
+import com.mz.bdleather.services.SupplierService;
 
 @Controller
 @RequestMapping("/products")
 public class ProductController {
 	
 	@Autowired
-	ProductRepository prodRepo;
+	ProductService prodService;
 	@Autowired
-	SupplyRepository supplyRepo;
+	SupplierService suppService;
 	
 	@GetMapping("/new")
 	public String displayProductForm(Model model) 
 	{
 		Product aProduct=new Product();
-		List<Supplier>suppliers=supplyRepo.findAll();
+		List<Supplier>suppliers=suppService.getAll();
 		model.addAttribute("products",aProduct);
 		model.addAttribute("supplierList", suppliers);
 		return"product/new-products";
@@ -35,7 +35,7 @@ public class ProductController {
 	@PostMapping("/create")
 	public String createNewProduct(Product product, Model model )
 	{
-		prodRepo.save(product);
+		prodService.save(product);
 //		Iterable<Supplier>chosenSupplier=supplyRepo.findAllById(suppliers);//updating supply entitys by
 //		for(Supplier supp:chosenSupplier)
 //		{
@@ -57,7 +57,7 @@ public class ProductController {
 	@PostMapping("/suppliers")
 	public String submitProducInventoryForm(Model model,Supplier supplier)
 	{
-		supplyRepo.save(supplier);
+		suppService.save(supplier);
 		return"redirect:/products/supply_info";
 	}
 }

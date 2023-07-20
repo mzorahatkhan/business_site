@@ -12,25 +12,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mz.bdleather.dao.CustomerRepository;
-import com.mz.bdleather.dao.ProductRepository;
-import com.mz.bdleather.dao.SupplyRepository;
 import com.mz.bdleather.dto.PieChartProduct;
 import com.mz.bdleather.dto.ProductSupplierInfo;
 import com.mz.bdleather.entities.Customer;
 import com.mz.bdleather.entities.Product;
 import com.mz.bdleather.entities.Supplier;
+import com.mz.bdleather.services.CustomerService;
+import com.mz.bdleather.services.ProductService;
+import com.mz.bdleather.services.SupplierService;
 
 @Controller
 @RequestMapping("")
 public class HomeController {
 	@Autowired
-	ProductRepository prodRepo;//bringing prodrepo to run crud operation prom h2 database
+	ProductService prodService;//bringing prodrepo to run crud operation prom h2 database
 	@Autowired
-	CustomerRepository custRepo; //autowiring customer repository instance for curd operation.
+	CustomerService custService; //autowiring customer service instance which is dependent on customer repo for curd operation.
 	
 	@Autowired
-	SupplyRepository supplyRepo;
+	SupplierService suppService;
 	
 	@Value("${myVersion}")
 	public String ver;
@@ -85,15 +85,15 @@ public class HomeController {
 	@GetMapping("/displayProducts")
 	public String displayProducts(Model model) throws JsonProcessingException
 	{
-		List<Product> products=prodRepo.findAll();//declaring list of product to store prodRepo curd operation.
+		List<Product> products=prodService.getAll();//declaring list of product to store prodRepo curd operation.
 		model.addAttribute("productsList", products);// adding the object to model using key value pair.
 		//using prodRepo to store the value comes from a custom query which type is a  list of dto this case ProductSupplierInfo
-		List<ProductSupplierInfo>prodSupplierInfo=prodRepo.showProductWithSupplier();
+		List<ProductSupplierInfo>prodSupplierInfo=prodService.getProductWithSupplier();
 		//adding list objec comes from custom query to the model
 		model.addAttribute("prodSupplyInfo", prodSupplierInfo);
 		
 		//using prodrepo to store the values comes from a customr query and which type is List of PieChartProduct
-		List<PieChartProduct>pieChartProductData=prodRepo.showProductNumberWithDifferentColor();
+		List<PieChartProduct>pieChartProductData=prodService.getProductNumberWithDifferentColor();
 		
 		//need to transform this list to a json object we need ObjectMapper
 		ObjectMapper objectMapper= new ObjectMapper();
@@ -108,7 +108,7 @@ public class HomeController {
 	@GetMapping("/displayCustomers")
 	public String displayCustomers(Model model)
 	{
-		List<Customer> customers=custRepo.findAll();
+		List<Customer> customers=custService.getAll();
 		model.addAttribute("customerList", customers);
 		return "main/display-customer";
 	}
@@ -116,7 +116,7 @@ public class HomeController {
 	@GetMapping("/displaySupplier")
 	public String displaySupplierInfo(Model model)
 	{
-		List<Supplier>supplier=supplyRepo.findAll();
+		List<Supplier>supplier=suppService.getAll();
 		model.addAttribute("supplierList", supplier);
 		return"main/display-supply";
 	}

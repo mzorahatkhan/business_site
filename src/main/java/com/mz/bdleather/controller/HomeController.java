@@ -59,7 +59,7 @@ public class HomeController {
 		return"redirect:/user_register";
 	}
     //after clicking login in home-page ,its re-direct to /loginForm in loginController
-	@GetMapping("/login")
+	@GetMapping("/loginPage")
 	public String showLoginPage()
 	{
 		return"redirect:/customer/loginForm";

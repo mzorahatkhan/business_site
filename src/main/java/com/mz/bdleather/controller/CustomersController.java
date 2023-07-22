@@ -1,6 +1,7 @@
 package com.mz.bdleather.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ public class CustomersController {
 	@Autowired
 	CustomerService custService; //this is creating instance of customer service which is dependent on customer repo
 	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 	@GetMapping("/user_register")
 	public String userRegistration(Model model) 
 	{
@@ -27,6 +30,7 @@ public class CustomersController {
 	@PostMapping("/register")
 	public String completeRegistration(Customer customer, Model model)
 	{
+		customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
 		//this is adding object to repo
 		custService.save(customer);
 		return"redirect:/user_register";

@@ -10,9 +10,9 @@ public class WebConfig implements WebMvcConfigurer{
 	
 	//password Encoder Bean cause spring dont take explicit password 
 		@Bean
-		  BCryptPasswordEncoder passwordEncoder() {
-			BCryptPasswordEncoder bcrypPasswordEncoder=new BCryptPasswordEncoder();
-			return bcrypPasswordEncoder ;
+		  BCryptPasswordEncoder bCryptpasswordEncoder() {
+			BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
+			return bCryptPasswordEncoder ;
 		}
 
 }

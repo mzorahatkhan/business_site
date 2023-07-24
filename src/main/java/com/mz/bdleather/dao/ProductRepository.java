@@ -12,6 +12,7 @@ import com.mz.bdleather.entities.Product;
 public interface ProductRepository extends CrudRepository<Product,Long> {
     @Override
 	public List<Product> findAll();
+  
     
     //custom query to find product name , supplier name and theier country 
     @Query(nativeQuery=true,value="SELECT p.PROD_NAME AS productName, s.SUPPLIER_NAME AS supplierName, s.SUPPLIER_COUNTRY AS supplierCountry "

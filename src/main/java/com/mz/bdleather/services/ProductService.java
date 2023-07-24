@@ -24,6 +24,13 @@ public class ProductService {
 		return prodRepo.findAll();
 	}
    
+	public Product getById(Long Id){
+		return prodRepo.findById(Id).get();
+	}
+	public void deleteById(Long Id) {
+		prodRepo.deleteById(Id);
+		
+	}
 	public List<ProductSupplierInfo>getProductWithSupplier(){
 		return prodRepo.showProductWithSupplier();
 	}

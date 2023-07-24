@@ -15,7 +15,7 @@ import com.mz.bdleather.services.ProductService;
 import com.mz.bdleather.services.SupplierService;
 
 @Controller
-@RequestMapping("/products")
+@RequestMapping("/product")
 public class ProductController {
 	
 	@Autowired
@@ -42,7 +42,7 @@ public class ProductController {
 //			supp.setTheProduct(product);
 //			supplyRepo.save(supp);
 //		}
-		return"redirect:/products/new";
+		return"redirect:/product/new";
 	}
     
 	//this is the endpoint for inserting supplier information and binding the form
@@ -58,6 +58,6 @@ public class ProductController {
 	public String submitProducInventoryForm(Model model,Supplier supplier)
 	{
 		suppService.save(supplier);
-		return"redirect:/products/supply_info";
+		return"redirect:/product/supply_info";
 	}
 }

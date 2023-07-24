@@ -19,6 +19,7 @@ public class CustomersController {
 	
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@GetMapping("/user_register")
 	public String userRegistration(Model model) 
 	{

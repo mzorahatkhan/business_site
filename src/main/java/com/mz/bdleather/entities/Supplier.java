@@ -2,6 +2,8 @@ package com.mz.bdleather.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,6 +30,7 @@ public class Supplier {
 	@JoinTable(name="product_supplier",
     joinColumns=@JoinColumn(name="supplier_id"),
     inverseJoinColumns=@JoinColumn(name="product_id"))
+	@JsonIgnore
 	private List<Product> prducts;
 	
 	public List<Product> getPrducts() {

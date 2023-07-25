@@ -22,4 +22,13 @@ public class SupplierService {
 		return suppRepo.findAll();
 	}
 	
+	public Supplier findSupplierById(Long id)
+	{
+		return suppRepo.findById(id).get();
+	}
+	
+	public void deleteSupplierById(Long id)
+	{
+		suppRepo.deleteById(id);
+	}
 }

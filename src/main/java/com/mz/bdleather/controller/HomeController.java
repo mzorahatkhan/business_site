@@ -75,12 +75,14 @@ public class HomeController {
 	@GetMapping("/insert_product")
 	public String insertProduct()
 	{
-		return"redirect:/products/new";
+		return"redirect:/product/new";
 	}
 	@GetMapping("/browse_products")
-	public String browseProduct()
+	public String browseProduct(Model model)
 	{
-		return"main/index";
+		 List<Product> products = prodService.getAll();
+	        model.addAttribute("products", products);
+		return"main/display-productImage";
 	}
 	
 	//this endpoint will show the product details in database

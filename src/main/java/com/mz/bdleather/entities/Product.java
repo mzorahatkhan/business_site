@@ -5,12 +5,14 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.JoinColumn;
@@ -27,6 +29,9 @@ public class Product {
 	private double prodPrice;
 	private String prodDescription;
 	private String prodColor;
+	@Column(name="prodimage")
+	
+	private byte[] prodImage;
 	
 	@ManyToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST},
 			fetch=FetchType.LAZY)
@@ -39,13 +44,26 @@ public class Product {
 	public Product() {
 		
 	};
+	
+	//this constructor is created so that user can intantiate the product object without prodImage
 	public Product(String prodName, double prodPrice, String prodDescription,String prodColor) {
 		super();
 		this.prodColor=prodColor;
 		this.prodName = prodName;
 		this.prodPrice = prodPrice;
 		this.prodDescription = prodDescription;
+		
 	}
+	//this constructor is created so that user can intantiate the product object with prodImage if they want 
+	public Product(String prodName, double prodPrice, String prodDescription,String prodColor,byte[] prodImage) {
+		super();
+		this.prodColor=prodColor;
+		this.prodName = prodName;
+		this.prodPrice = prodPrice;
+		this.prodDescription = prodDescription;
+		this.prodImage=prodImage;
+	}
+	
 	
 	
 	public List<Supplier> getSuppliers() {
@@ -85,5 +103,12 @@ public class Product {
 	public void setProdDescription(String prodDescription) {
 		this.prodDescription = prodDescription;
 	}
+	public byte[] getProdImage() {
+		return prodImage;
+	}
+	public void setProdImage(byte[] prodImage) {
+		this.prodImage = prodImage;
+	}
+	
 	
 }

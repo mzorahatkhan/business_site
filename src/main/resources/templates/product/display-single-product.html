@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>display-single-product</title>
+	<style th:replace="layouts :: navstyle"></style>
+	
+</head>
+
+<body>
+	<header>
+        <!-- Your header content here -->
+       <nav th:replace="layouts :: navbar"></nav>
+    </header>
+    
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>Product Price</th>
+					<th>Product Description</th>
+					<th>Product Color</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${products.prodPrice}"></td>
+					<td th:text="${products.prodDescription}"></td>
+					<td th:text="${products.prodColor}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

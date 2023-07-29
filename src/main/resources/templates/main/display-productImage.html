@@ -2,14 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Product Images</title>
+    <!-- styling for homepage navbar using layouts th:fragment attribute for navbar -->
+	<style th:replace="layouts :: navstyle"> </style>
+    <style>
+        .image-container {
+            width: 100px; /* Set the desired width */
+            height: 100px; /* Set the desired height */
+            overflow: hidden; /* Hide any overflowing parts of the image */
+        }
+
+        .product-image {
+            width: 75%;
+            height: 75%;
+            object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+        }
+        
+        body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+			background-color: lightskyblue;
+		}
+    </style>
 </head>
 <body>
+	
+	<header>
+		<!-- navigation header content here -->
+		<nav th:replace="layouts :: navbar"></nav>
+	</header>
     <h1>Product Images</h1>
 
-    <div th:each="product : ${products}">
-        <h2 th:text="${product.prodName}"></h2>
-        <img th:src="@{'/product/image/' + ${product.productId}}" alt="Product Image">
+    <div th:each="product : ${products}"> 
+		
+		<a th:href="@{'/product/' + ${product.productId}}">
+			<div class="image-container">
+			<img class="product-image" th:src="@{'/product/image/' + ${product.productId}}" alt="Product Image">
+		</div>
         <p th:text="${product.prodDescription}"></p>
     </div>
+		</a>
+        
 </body>
 </html>

@@ -80,8 +80,11 @@ public class ProductController {
 		suppService.save(supplier);
 		return"redirect:/product/supply_info";
 	}
+	
+	//Endpoint to get the product image by productId
 	@GetMapping("/image/{productId}")
-	public ResponseEntity<byte[]> getProductImage(@PathVariable long productId) {
+	public ResponseEntity<byte[]> getProductImage(@PathVariable long productId)
+	{
 	    Product product = prodService.getById(productId);
 	    if (product != null && product.getProdImage() != null) {
 	        HttpHeaders headers = new HttpHeaders();
@@ -91,7 +94,18 @@ public class ProductController {
 	        // Return a default image or an error response if the image is not found
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }
-	}
+	 }
+	
+    
+	  //Endpoint to get the product details using product id 
+	    @GetMapping("/{productId}")
+	    public String showProductDetailsByid(@PathVariable("productId") long productId, Model model)
+	    {
+	    	Product product=prodService.getById(productId);
+	    	model.addAttribute("products",product);
+	    	
+	    	return"product/display-single-product";
+	    }
 	
 
 }

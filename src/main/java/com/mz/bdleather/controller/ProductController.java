@@ -1,13 +1,21 @@
 package com.mz.bdleather.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mz.bdleather.entities.Product;
 import com.mz.bdleather.entities.Supplier;
@@ -33,18 +41,30 @@ public class ProductController {
 		return"product/new-products";
 	}
 	@PostMapping("/create")
-	public String createNewProduct(Product product, Model model )
+	public String createNewProduct(@RequestParam("file") MultipartFile file, Product product, Model model)
 	{
-		prodService.save(product);
-//		Iterable<Supplier>chosenSupplier=supplyRepo.findAllById(suppliers);//updating supply entitys by
-//		for(Supplier supp:chosenSupplier)
-//		{
-//			supp.setTheProduct(product);
-//			supplyRepo.save(supp);
-//		}
-		return"redirect:/product/new";
+	    try {
+	        // Check if the file is not empty
+	        if (!file.isEmpty()) {
+	            // Get the byte array of the file's content
+	            byte[] imageBytes = file.getBytes();
+
+	            // Set the image data to the product
+	            product.setProdImage(imageBytes);
+	        }
+
+	        // Save the product to the database
+	        prodService.save(product);
+
+	        
+	    } 
+	    
+	    catch (IOException e) {
+	        // Handle the exception...
+	    }
+	    return "redirect:/product/new";
 	}
-    
+
 	//this is the endpoint for inserting supplier information and binding the form
 	@GetMapping("/supply_info")
 	public String displaySupplyInfoForm(Model model)
@@ -60,4 +80,18 @@ public class ProductController {
 		suppService.save(supplier);
 		return"redirect:/product/supply_info";
 	}
+	@GetMapping("/image/{productId}")
+	public ResponseEntity<byte[]> getProductImage(@PathVariable long productId) {
+	    Product product = prodService.getById(productId);
+	    if (product != null && product.getProdImage() != null) {
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.setContentType(MediaType.IMAGE_PNG); // Change MediaType according to your image type
+	        return new ResponseEntity<>(product.getProdImage(), headers, HttpStatus.OK);
+	    } else {
+	        // Return a default image or an error response if the image is not found
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	}
+	
+
 }

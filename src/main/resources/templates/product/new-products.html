@@ -1,119 +1,127 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Create New Product</title>
-    <!-- styling for homepage navbar using layouts th:fragment attribute for navbar -->
-    <style th:replace="layouts :: navstyle"> </style>
-    <!-- styling for new product form -->
-    <style >
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: lightcyan;
-        }
+	<title>Create New Product</title>
+	<!-- styling for homepage navbar using layouts th:fragment attribute for navbar -->
+	<style th:replace="layouts :: navstyle"> </style>
+	<!-- styling for new product form -->
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+			background-color: lightcyan;
+		}
 
-        h1 {
-            color: #333;
-        }
+		h1 {
+			color: #333;
+		}
 
-        form {
-            margin-top: 20px;
-            width: 60%;
-            max-width: 600px;
-            margin-left: 0;
-            margin-right: auto;
-            background-color: lightskyblue;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            text-align: left;
-        }
+		form {
+			margin-top: 20px;
+			width: 60%;
+			max-width: 600px;
+			margin-left: 0;
+			margin-right: auto;
+			background-color: lightskyblue;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+			text-align: left;
+		}
 
-        label {
-            display: block;
-            margin-top: 10px;
-            color: royalblue;
-            font-weight: bold;
-            font-size: 16px;
-        }
+		label {
+			display: block;
+			margin-top: 10px;
+			color: royalblue;
+			font-weight: bold;
+			font-size: 16px;
+		}
 
-        input[type="text"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-        }
+		input[type="text"],
+		textarea,
+		select {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			font-size: 14px;
+		}
 
-        textarea {
-            resize: vertical;
-        }
+		textarea {
+			resize: vertical;
+		}
 
-        button[type="submit"] {
-            margin-top: 20px;
-            padding: 12px 24px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
+		button[type="submit"] {
+			margin-top: 20px;
+			padding: 12px 24px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+			transition: background-color 0.3s ease;
+		}
 
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
+		button[type="submit"]:hover {
+			background-color: #0056b3;
+		}
+	</style>
 </head>
+
 <body>
-    <header>
-        <!-- Your header content here -->
-        <nav th:replace="layouts :: navbar"></nav>
-    </header>
+	<header>
+		<!-- Your header content here -->
+		<nav th:replace="layouts :: navbar"></nav>
+	</header>
 
-    <h1>Create New Product</h1>
+	<h1>Create New Product</h1>
 
-    <div>
-		<form th:action="@{/products/create}" th:object="${products}" method="post">
-        <div>
-            <label for="prodName">Product Name:</label>
-            <input type="text" id="prodName" name="prodName" th:value="${products.prodName}" required>
-        </div>
+	<div>
+		<form th:action="@{/product/create}" th:object="${products}" method="post" enctype="multipart/form-data">
+			<div>
+				<label for="prodName">Product Name:</label>
+				<input type="text" id="prodName" name="prodName" th:value="${products.prodName}" required>
+			</div>
 
-        <div>
-            <label for="prodPrice">Product Price:</label>
-            <input type="text" id="prodPrice" name="prodPrice" th:value="${products.prodPrice}" required>
-        </div>
+			<div>
+				<label for="prodPrice">Product Price:</label>
+				<input type="text" id="prodPrice" name="prodPrice" th:value="${products.prodPrice}" required>
+			</div>
 
-        <div>
-            <label for="prodDescription">Product Description:</label>
-            <textarea id="prodDescription" name="prodDescription" th:text="${products.prodDescription}" required></textarea>
-        </div>
+			<div>
+				<label for="prodImage">Product Image:</label>
+				<input type="file" id="prodImage" name="file" accept="image/*" value="${products.prodImage}">
+			</div>
+			<div>
+				<label for="prodDescription">Product Description:</label>
+				<textarea id="prodDescription" name="prodDescription" th:text="${products.prodDescription}"
+					required></textarea>
+			</div>
 
-        <div>
-            <label for="prodColor">Product Color:</label>
-            <select id="prodColor" name="prodColor" th:field="${products.prodColor}">
-                <option value="Black">Black</option>
-                <option value="Brown">Brown</option>
-                <option value="Blue">Blue</option>
-            </select>
-        </div>
+			<div>
+				<label for="prodColor">Product Color:</label>
+				<select id="prodColor" name="prodColor" th:field="${products.prodColor}">
+					<option value="Black">Black</option>
+					<option value="Brown">Brown</option>
+					<option value="Blue">Blue</option>
+				</select>
+			</div>
 
-        <div>
-            <label for="suppliers">Select Supplier:</label>
-            <select id="suppliers" name="suppliers" multiple="multiple" th:field="${products.suppliers}">
-                <option th:each="supplier : ${supplierList}" 
-                th:value="${supplier.supplierId}" 
-                th:text="${supplier.supplierName}">
-                </option>
-            </select>
-        </div>
 
-        <button type="submit">Create</button>
-    </form>
+			<div>
+				<label for="suppliers">Select Supplier:</label>
+				<select id="suppliers" name="suppliers" multiple="multiple" th:field="${products.suppliers}">
+					<option th:each="supplier : ${supplierList}" th:value="${supplier.supplierId}"
+						th:text="${supplier.supplierName}">
+					</option>
+				</select>
+			</div>
+
+			<button type="submit">Create</button>
+		</form>
 	</div>
 </body>
+
 </html>

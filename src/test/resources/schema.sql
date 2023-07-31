@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS product (
   prod_name VARCHAR(50) NOT NULL,
   prod_price DECIMAL(10, 2) NOT NULL,
   prod_description VARCHAR(500) NOT NULL,
-  prod_color VARCHAR(50) NOT NULL
+  prod_color VARCHAR(50) NOT NULL,
+  prodimage BYTEA
 );
 
 -- Create supplier table

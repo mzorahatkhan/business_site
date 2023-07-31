@@ -4,7 +4,35 @@
 <head>
 	<title>display-single-product</title>
 	<style th:replace="layouts :: navstyle"></style>
-	
+	<style>
+		body{
+			background-color: aqua;
+		}
+		/* Styling for the layout */
+		.product-container {
+			display: flex;
+			flex-direction: column; /* Change to column to display image and details vertically */
+			align-items: left;
+			margin-left: 20px;
+		}
+
+		.product-image-container {
+			width: 600px; /* Set the desired width for the image container */
+			height: 600px; /* Set the desired height for the image container */
+			overflow: hidden; /* Hide any overflowing parts of the image */
+		}
+
+		.product-image {
+			width: 100%; /* Set the image width to 100% to fill the container */
+			height: 100%; /* Set the image height to 100% to fill the container */
+			object-fit: contain; /* Maintain aspect ratio and fit the entire image inside the container */
+		}
+
+		.product-details {
+			margin-top: 20px; /* Add some space between the image and details */
+			text-align: left;
+		}
+	</style>
 </head>
 
 <body>
@@ -12,24 +40,16 @@
         <!-- Your header content here -->
        <nav th:replace="layouts :: navbar"></nav>
     </header>
-    
-	<div>
-		<table>
-			<thead>
-				<tr>
-					<th>Product Price</th>
-					<th>Product Description</th>
-					<th>Product Color</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td th:text="${products.prodPrice}"></td>
-					<td th:text="${products.prodDescription}"></td>
-					<td th:text="${products.prodColor}"></td>
-				</tr>
-			</tbody>
-		</table>
+
+	<div class="product-container">
+		<div class="product-image-container">
+			<img class="product-image" th:src="@{'/product/image/' + ${products.productId}}" alt="Product Image">
+		</div>
+		<div class="product-details">
+			<p><strong> Price:</strong> <span th:text="${products.prodPrice}"></span></p>
+			<p><strong>Description:</strong> <span th:text="${products.prodDescription}"></span></p>
+			<p><strong>Color:</strong> <span th:text="${products.prodColor}"></span></p>
+		</div>
 	</div>
 </body>
 

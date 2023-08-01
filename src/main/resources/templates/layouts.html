@@ -10,6 +10,19 @@
 			padding: 10px;
 			text-align: center;
 		}
+		 .cart-logo {
+            width: 30px;
+            height: 30px;
+            background-image: url("/cart-logo.jpg"); /* Replace with your cart logo image path */
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer; /* Add cursor pointer to show it's clickable */
+        }
+        
+
+      
 
 		nav a {
 			display: inline-block;
@@ -86,7 +99,9 @@
 		<a th:href="@{/loginPage}">Login</a>
 		<a th:href="@{/browse_products}">Browse Products</a>
 		<a th:href="@{/insert_product}">Insert Products</a>
-		<a th:href="@{/product/view_cart}" >View Cart</a>
+		<a th:href="@{/product/view_cart}">
+            <span class="cart-logo" th:onclick="'window.location.href=' + @{/product/view_cart}"></span>
+        </a>
 	</nav>
 	
 

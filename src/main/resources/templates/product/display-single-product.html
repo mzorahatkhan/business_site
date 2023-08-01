@@ -5,41 +5,66 @@
 	<title>display-single-product</title>
 	<style th:replace="layouts :: navstyle"></style>
 	<style>
-		body{
+		body {
 			background-color: aqua;
 		}
+
 		/* Styling for the layout */
 		.product-container {
 			display: flex;
-			flex-direction: column; /* Change to column to display image and details vertically */
+			flex-direction: column;
+			/* Change to column to display image and details vertically */
 			align-items: left;
 			margin-left: 20px;
 		}
 
 		.product-image-container {
-			width: 600px; /* Set the desired width for the image container */
-			height: 600px; /* Set the desired height for the image container */
-			overflow: hidden; /* Hide any overflowing parts of the image */
+			width: 600px;
+			/* Set the desired width for the image container */
+			height: 600px;
+			/* Set the desired height for the image container */
+			overflow: hidden;
+			/* Hide any overflowing parts of the image */
 		}
 
 		.product-image {
-			width: 100%; /* Set the image width to 100% to fill the container */
-			height: 100%; /* Set the image height to 100% to fill the container */
-			object-fit: contain; /* Maintain aspect ratio and fit the entire image inside the container */
+			width: 100%;
+			/* Set the image width to 100% to fill the container */
+			height: 100%;
+			/* Set the image height to 100% to fill the container */
+			object-fit: contain;
+			/* Maintain aspect ratio and fit the entire image inside the container */
 		}
 
 		.product-details {
-			margin-top: 20px; /* Add some space between the image and details */
+			margin-top: 20px;
+			/* Add some space between the image and details */
 			text-align: left;
+		}
+
+		.cart-container {
+			bottom: 20px;
+			left: 20px;
+			align-items: end;
+		}
+
+		.button {
+			background-color: cornflowerblue;
+			color: white;
+			text-decoration: none;
+			padding: 8px 16px;
+			border-radius: 4px;
+			display: inline-block;
+			margin-right: 10px;
 		}
 	</style>
 </head>
 
 <body>
 	<header>
-        <!-- Your header content here -->
-       <nav th:replace="layouts :: navbar"></nav>
-    </header>
+		<!-- Your header content here -->
+		<nav th:replace="layouts :: navbar"></nav>
+	</header>
 
 	<div class="product-container">
 		<div class="product-image-container">
@@ -50,6 +75,9 @@
 			<p><strong>Description:</strong> <span th:text="${products.prodDescription}"></span></p>
 			<p><strong>Color:</strong> <span th:text="${products.prodColor}"></span></p>
 		</div>
+	</div>
+	<div class="cart-container">
+		<a th:href="@{/product/addToCart/${products.productId}}" class="button">Add to Cart</a>
 	</div>
 </body>
 

@@ -1,93 +1,94 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Leather Products - Home</title>
-    <!-- This is the styling for nav bar which can be used in any page using th:replace="layouts :: nvastyle" attribute -->
-    <style th:fragment="navstyle">
-        
-        nav {
-            background-color: #333;
-            padding: 10px;
-            text-align: center;
-        }
+	<title>Leather Products - Home</title>
+	<!-- This is the styling for nav bar which can be used in any page using th:replace="layouts :: nvastyle" attribute -->
+	<style th:fragment="navstyle">
+		nav {
+			background-color: #333;
+			padding: 10px;
+			text-align: center;
+		}
 
-        nav a {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 0 10px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
+		nav a {
+			display: inline-block;
+			padding: 10px 20px;
+			margin: 0 10px;
+			color: #fff;
+			text-decoration: none;
+			font-weight: bold;
+		}
 
-        nav a:hover {
-            background-color: #007bff;
-        }
-        
-         label {
-            display: block;
-            margin-top: 10px;
-            color: royalblue;
-            font-weight: bold;
-            font-size: 16px;
-        }
-    </style>
-    <!-- This is the styling for registerPage using th:replace tag -->
-    <style th:fragment="registerStyle">
+		nav a:hover {
+			background-color: #007bff;
+		}
+
+		label {
+			display: block;
+			margin-top: 10px;
+			color: royalblue;
+			font-weight: bold;
+			font-size: 16px;
+		}
+	</style>
+	<!-- This is the styling for registerPage using th:replace tag -->
+	<style th:fragment="registerStyle">
 		body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #FFE4C4;
-        }
-        
-        h1 {
-            color: #333;
-        }
-        
-        form {
-            margin-top: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-top: 10px;
-            color: #666;
-            font-weight: bold;
-        }
-        
-        input[type="text"],
-        input[type="email"] {
-            width: 50%;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        
-        button[type="submit"] {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
+			font-family: Arial, sans-serif;
+			margin: 20px;
+			background-color: #FFE4C4;
+		}
+
+		h1 {
+			color: #333;
+		}
+
+		form {
+			margin-top: 20px;
+		}
+
+		label {
+			display: block;
+			margin-top: 10px;
+			color: #666;
+			font-weight: bold;
+		}
+
+		input[type="text"],
+		input[type="email"] {
+			width: 50%;
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+
+		button[type="submit"] {
+			margin-top: 20px;
+			padding: 10px 20px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #0056b3;
+		}
 	</style>
 </head>
+
 <body>
 	<nav th:fragment="navbar">
-	<a th:href="@{/home}">Home</a>
-	<a th:href="@{/register}">Register</a>
-	<a th:href="@{/loginPage}">Login</a>
-	<a th:href="@{/browse_products}">Browse Products</a>
-	<a th:href="@{/insert_product}">Insert Products</a>
-</nav>
+		<a th:href="@{/home}">Home</a>
+		<a th:href="@{/register}">Register</a>
+		<a th:href="@{/loginPage}">Login</a>
+		<a th:href="@{/browse_products}">Browse Products</a>
+		<a th:href="@{/insert_product}">Insert Products</a>
+		<a th:href="@{/product/view_cart}" >View Cart</a>
+	</nav>
+	
 
 </body>
 

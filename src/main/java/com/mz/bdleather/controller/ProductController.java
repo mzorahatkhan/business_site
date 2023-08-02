@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mz.bdleather.dao.OrderRepository;
 import com.mz.bdleather.entities.Orderinfo;
 import com.mz.bdleather.entities.Product;
 import com.mz.bdleather.entities.Supplier;
+import com.mz.bdleather.services.OrderinfoService;
 import com.mz.bdleather.services.ProductService;
 import com.mz.bdleather.services.SupplierService;
 
@@ -33,7 +33,7 @@ public class ProductController {
 	@Autowired
 	SupplierService suppService;
 	@Autowired
-	OrderRepository orderRepo;
+	OrderinfoService orderInfoService;
 	
 	@GetMapping("/new")
 	public String displayProductForm(Model model) 
@@ -126,7 +126,7 @@ public class ProductController {
 	    	orderInfo.setItem(product.getProdName());
 	    	orderInfo.setItemPrice(product.getProdPrice());
 	    	orderInfo.setOrderQuantity(orderQuantity);
-	    	orderRepo.save(orderInfo);
+	    	orderInfoService.save(orderInfo);
 	    	
 	    	 model.addAttribute("orderinfo", orderInfo);
 	    	//Add a success message to be displayed on the redirected page

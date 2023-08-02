@@ -77,7 +77,9 @@
 		</div>
 	</div>
 	<div class="cart-container">
-		<a th:href="@{/product/addToCart/${products.productId}}" class="button">Add to Cart</a>
+		<form th:action="@{/product/addToCart/{productId}(productId=${products.productId})}" method="post">
+        <button type="submit" class="button">Add to Cart</button>
+    </form>
 	</div>
 </body>
 

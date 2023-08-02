@@ -113,16 +113,22 @@ public class ProductController {
 	    
 	    
 	    
-	    //Endpoint to view the cart 
+	    //Endpoint to add items to the cart and quantity
 	    @PostMapping("/addToCart/{productId}")
-	    public String  addItemToCart(@PathVariable("productId") long productId,Model model, Orderinfo orderinfo)
+	    public String  addItemToCart(@PathVariable("productId") long productId,Model model,
+	    		@RequestParam(value="orderQuantity") Long orderQuantity)
 	    {
 	    	Product product=prodService.getById(productId);
-	    	model.addAttribute("products",product);
-	    	orderinfo.setItem(product.getProdName());
-	    	orderinfo.setItemPrice(product.getProdPrice());
-	    	orderRepo.save(orderinfo);
 	    	
+	    	model.addAttribute("products",product);
+	    	
+	    	Orderinfo orderInfo = new Orderinfo();
+	    	orderInfo.setItem(product.getProdName());
+	    	orderInfo.setItemPrice(product.getProdPrice());
+	    	orderInfo.setOrderQuantity(orderQuantity);
+	    	orderRepo.save(orderInfo);
+	    	
+	    	 model.addAttribute("orderinfo", orderInfo);
 	    	//Add a success message to be displayed on the redirected page
 	        model.addAttribute("message", "Item added to cart successfully!");
 	        

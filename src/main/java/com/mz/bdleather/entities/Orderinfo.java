@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Transient;
 
 @Entity
 public class Orderinfo {
@@ -17,7 +16,7 @@ public class Orderinfo {
 	private String item;
 	private double itemPrice;
 	@Column(name="order_quantity")
-	private Long oderQuantity;
+	private Long orderQuantity;
 	
 	//Empty constructor so that we can initialize orders without parameter
 	public Orderinfo() {
@@ -33,7 +32,7 @@ public class Orderinfo {
 		super();
 		this.item = item;
 		this.itemPrice = itemPrice;
-		this.oderQuantity = oderQuantity;
+		this.orderQuantity = oderQuantity;
 	}
 
 	public Long getOrderId() {
@@ -59,16 +58,17 @@ public class Orderinfo {
 	public void setItemPrice(double itemPrice) {
 		this.itemPrice=itemPrice;
 	}
-
-	public Long getOderQuantity() {
-		return oderQuantity;
+	public Long getOrderQuantity() {
+		return orderQuantity;
+	}
+	public void setOrderQuantity(Long orderQuantity) {
+		this.orderQuantity = orderQuantity;
 	}
 
-	public void setOderQuantity(Long oderQuantity) {
-		this.oderQuantity = oderQuantity;
+	
 	};
 	
 	
 	
 
-}
+

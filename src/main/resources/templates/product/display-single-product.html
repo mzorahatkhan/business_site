@@ -77,8 +77,14 @@
 		</div>
 	</div>
 	<div class="cart-container">
-		<form th:action="@{/product/addToCart/{productId}(productId=${products.productId})}" method="post">
+		<form th:action="@{/product/addToCart/{productId}(productId=${products.productId})}" method="post"
+		th:object="${orderinfo}">
+        <label >Quantity:</label>
+        <!-- make sure order info not null -->
+        <input type="text" id="orderQuantity" name="orderQuantity" th:value="${orderinfo != null ? orderinfo.orderQuantity : ''}" >
         <button type="submit" class="button">Add to Cart</button>
+        
+		
     </form>
 	</div>
 </body>

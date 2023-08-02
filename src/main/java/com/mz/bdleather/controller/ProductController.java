@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mz.bdleather.dao.OrderRepository;
+import com.mz.bdleather.entities.Orderinfo;
 import com.mz.bdleather.entities.Product;
 import com.mz.bdleather.entities.Supplier;
 import com.mz.bdleather.services.ProductService;
@@ -30,6 +32,8 @@ public class ProductController {
 	ProductService prodService;
 	@Autowired
 	SupplierService suppService;
+	@Autowired
+	OrderRepository orderRepo;
 	
 	@GetMapping("/new")
 	public String displayProductForm(Model model) 
@@ -106,6 +110,25 @@ public class ProductController {
 	    	
 	    	return"product/display-single-product";
 	    }
-	
+	    
+	    
+	    
+	    //Endpoint to view the cart 
+	    @PostMapping("/addToCart/{productId}")
+	    public String  addItemToCart(@PathVariable("productId") long productId,Model model, Orderinfo orderinfo)
+	    {
+	    	Product product=prodService.getById(productId);
+	    	model.addAttribute("products",product);
+	    	orderinfo.setItem(product.getProdName());
+	    	orderinfo.setItemPrice(product.getProdPrice());
+	    	orderRepo.save(orderinfo);
+	    	
+	    	//Add a success message to be displayed on the redirected page
+	        model.addAttribute("message", "Item added to cart successfully!");
+	        
+	    	return"redirect:/product/{productId}";
+	    	
+	    }
+	 
 
 }
